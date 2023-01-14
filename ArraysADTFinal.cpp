@@ -9,6 +9,27 @@ struct array{
     int A[20];
     int size;
     int length;
+
+    int RBsearch(int l, int h, int key)
+    {
+       int mid = floor((l+h)/2);
+       if(l<=h)
+       {
+            if(A[mid]==key)
+            {
+                return mid;
+            }
+            else if (A[mid]>key)
+            {
+                return RBsearch(l,mid-1,key);
+            }
+            else
+            {
+                return RBsearch(mid+1,h,key);
+            }
+       }
+    return -1;
+    }
 };
 
 void display(struct array *arr)
@@ -124,6 +145,8 @@ int Bsearch(struct array *arr, int key)
 }
 
 
+
+
 int main()
 {
     struct array arr = {{4,8,10,15,18,21,24,27,29,33,34,37,39,41,43},15,15};
@@ -135,7 +158,8 @@ int main()
     // cout<<Lsearch1(&arr,8)<<endl;
     
     display(&arr);
-    cout<<Bsearch(&arr,27)<<endl;
+    cout<<Bsearch(&arr,34)<<endl;
+    cout<<arr.RBsearch(0,14,34);
 
 
 
