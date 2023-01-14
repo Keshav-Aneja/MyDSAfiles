@@ -1,3 +1,17 @@
+// The following code includes the various functions that can be called on an Array like:
+// Display()
+// Append()
+// Insert()
+// Delete()
+// Bsearch() -- Binary Search
+// RBsearch() -- Recursive Binary searchen
+// Lsearch1 -- Optimised Linear search
+// Lsearch2 -- Optimised Linear search
+// get(index)
+// set(index,val)
+// Max()
+// Min()
+
 #include<iostream>
 #include<string>
 #include<vector>
@@ -31,7 +45,6 @@ struct array{
     return -1;
     }
 };
-
 void display(struct array *arr)
 {
     cout<<"The Elements of the Array are: ";
@@ -41,13 +54,11 @@ void display(struct array *arr)
     }
     cout<<endl;
 }
-
 void append(struct array *arr, int z)
 {
     arr->A[arr->length] = z;
     arr->length++;
 }
-
 void insert(struct array *arr, int index, int z)
 {
     for(int i=arr->length; i>index; i--)
@@ -57,7 +68,6 @@ void insert(struct array *arr, int index, int z)
     arr->A[index] = z;
     arr->length++;
 }
-
 void Delete(struct array *arr, int index)
 {   
     for(int i=index; i<=arr->length-2;i++)
@@ -66,7 +76,6 @@ void Delete(struct array *arr, int index)
     }
     arr->length--;
 }
-
 int Lsearch1(struct array *arr, int key)
 {   
     for(int i=0; i<arr->length; i++)
@@ -103,7 +112,6 @@ int Lsearch2(struct array *arr, int key)
     }
     return -1;
 } 
-//SELF CODED
 int Bsearch(struct array *arr, int key)
 {
     int l=0;
@@ -143,10 +151,63 @@ int Bsearch(struct array *arr, int key)
     }
     return ans;
 }
+void get(struct array *arr, int index)
+{
+    if (index>=0 && index<=arr->length-1)
+    {
+        cout<<arr->A[index]<<endl;
+    }
+    else{
+        cout<<"Error: Element Not Found"<<endl;
+    }
+}
+void set(struct array *arr, int index, int val)
+{
+    if(index>=0 && index<=arr->length-1)
+    {
+        arr->A[index] = val;
+    }
+}
 
-
-
-
+void Max(struct array *arr)
+{   long long int max = INT64_MIN;
+    for(int i=0; i<arr->length; i++)
+    {
+        if(arr->A[i]>max)
+        {
+            max = arr->A[i];
+        }
+    }
+    cout<<max<<endl;
+}
+void Min(struct array *arr)
+{   long long int min = INT64_MAX;
+    for(int i=0; i<arr->length; i++)
+    {
+        if(arr->A[i]<min)
+        {
+            min = arr->A[i];
+        }
+    }
+    cout<<min<<endl;
+}
+void sum(struct array *arr)
+{   int sum;
+    for(int i=0;i<arr->length; i++)
+    {
+        sum = sum + arr->A[i];
+    }
+    cout<<sum<<endl;
+}
+void avg(struct array *arr)
+{
+    int sum;
+    for(int i=0;i<arr->length; i++)
+    {
+        sum = sum + arr->A[i];
+    }
+    cout<<sum/(arr->length)<<endl;
+}
 int main()
 {
     struct array arr = {{4,8,10,15,18,21,24,27,29,33,34,37,39,41,43},15,15};
@@ -157,9 +218,17 @@ int main()
     // cout<<Lsearch2(&arr,5)<<endl;
     // cout<<Lsearch1(&arr,8)<<endl;
     
-    display(&arr);
-    cout<<Bsearch(&arr,34)<<endl;
-    cout<<arr.RBsearch(0,14,34);
+    // display(&arr);
+    // cout<<Bsearch(&arr,34)<<endl;
+    // cout<<arr.RBsearch(0,14,34);
+    // get(&arr,5);
+    // set(&arr,10,-9);
+    // Max(&arr);
+    // Min(&arr);
+    // display(&arr);
+    // sum(&arr);
+    // avg(&arr);
+
 
 
 
