@@ -11,6 +11,10 @@
 // set(index,val)
 // Max()
 // Min()
+//Lrotate() & Lshift()
+//Insert in Sorted Array
+//-ve Numbers on one side
+//To check wether the list is sorted or not
 
 #include<iostream>
 #include<string>
@@ -169,6 +173,7 @@ void set(struct array *arr, int index, int val)
     }
 }
 
+
 void Max(struct array *arr)
 {   long long int max = INT64_MIN;
     for(int i=0; i<arr->length; i++)
@@ -208,9 +213,92 @@ void avg(struct array *arr)
     }
     cout<<sum/(arr->length)<<endl;
 }
+void reverse1(struct array *arr)
+{
+    int j,i;
+    for(i=0,j=arr->length-1; i!=j; i++,j--)
+    {
+        swap(arr->A[i],arr->A[j]);
+    }
+}
+void reverse2(struct array *arr)
+{
+    int *B;
+    B = new int[15];
+    for(int i=0; i<arr->length; i++)
+    {
+        B[i] = arr->A[arr->length-1-i];
+    }
+    for(int i=0; i<arr->length; i++)
+    {
+        arr->A[i] = B[i];
+    }
+    delete []B;
+}
+void Lshift(struct array *arr)
+{
+    for(int i=0; i<arr->length; i++)
+    {
+        arr->A[i] = arr->A[i+1];
+    }
+    arr->A[arr->length] = 0;
+}
+void Lrotate(struct array *arr)
+{
+    int tmp = arr->A[0];
+    for(int i=0; i<arr->length; i++)
+    {
+        arr->A[i] = arr->A[i+1];
+    }
+    arr->A[arr->length-1] = tmp;
+}
+bool issorted(struct array *arr)
+{
+    for(int i=0; i<arr->length-1; i++)
+    {
+        if(arr->A[i]>arr->A[i+1])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+void InsertSorted(struct array *arr, int val)
+{
+    int i = arr->length-1;
+    while(arr->A[i]>val)
+    {
+        if(arr->A[i]>val)
+        {
+            arr->A[i+1] = arr->A[i];
+        }
+        i--;
+    }
+    arr->A[i+1] = val;
+    arr->length++;
+}
+void OneSided(struct array *arr)
+{
+    int i=0;
+    int j=arr->length-1;
+    while(i<j)
+    {
+        while(arr->A[i]<0){i++;}
+        while(arr->A[j]>=0){j--;}
+
+        if(i<j)
+        {
+            swap(arr->A[i],arr->A[j]);
+            i++;
+            j++;
+        }
+    }
+   
+}
 int main()
 {
     struct array arr = {{4,8,10,15,18,21,24,27,29,33,34,37,39,41,43},15,15};
+    struct array arr2 = {{-6,-4,-8,10,5,-7,-9,12,3,2},10,10};
     // append(&arr,12);
     // insert(&arr,3,11);
     // Delete(&arr,0);
@@ -228,9 +316,17 @@ int main()
     // display(&arr);
     // sum(&arr);
     // avg(&arr);
-
-
-
-
+    // display(&arr);
+    // reverse2(&arr);
+    // display(&arr);
+    // display(&arr);
+    // Lrotate(&arr);
+    // // display(&arr);
+    // display(&arr);
+    // InsertSorted(&arr,23);
+    // display(&arr);
+    display(&arr2);
+    OneSided(&arr2);
+    display(&arr2);
      return 0;
 }
