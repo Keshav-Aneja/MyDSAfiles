@@ -295,10 +295,43 @@ void OneSided(struct array *arr)
     }
    
 }
+void merge(struct array *X, struct array *Y)
+{
+    int n = X->length + Y->length;
+    int C[n];
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<X->length && j<Y->length)
+    {
+        if(X->A[i] < Y->A[j])
+        {
+            C[k++] = X->A[i++];
+        }
+        else
+        {
+            C[k++] = Y->A[j++];
+        }
+    }
+    for(;i<X->length;i++)
+    {
+        C[k++] = X->A[i];
+    }
+    for(;j<Y->length;j++)
+    {
+        C[k++] = Y->A[j];
+    }
+    for(auto &x:C)
+    {
+        cout<<x<<" ";
+    }
+}
 int main()
 {
     struct array arr = {{4,8,10,15,18,21,24,27,29,33,34,37,39,41,43},15,15};
     struct array arr2 = {{-6,-4,-8,10,5,-7,-9,12,3,2},10,10};
+    struct array P = {{3,8,16,20,25},10,5};
+    struct array Q = {{4,10,22,23,24},10,5};
     // append(&arr,12);
     // insert(&arr,3,11);
     // Delete(&arr,0);
@@ -325,8 +358,12 @@ int main()
     // display(&arr);
     // InsertSorted(&arr,23);
     // display(&arr);
-    display(&arr2);
-    OneSided(&arr2);
-    display(&arr2);
+    // display(&arr2);
+    // OneSided(&arr2);
+    // display(&arr2);
+    display(&P);
+    display(&Q);
+    merge(&P,&Q);
+    
      return 0;
 }
